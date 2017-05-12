@@ -1,10 +1,10 @@
 class RecordsController < ApplicationController
   def index
-    @records = Record.all
+    @records = current_user.records.all
   end
 
   def create
-    @record = Record.new(record_params)
+    @record = current_user.records.new(record_params)
 
     if @record.save
       render json: @record
@@ -14,13 +14,13 @@ class RecordsController < ApplicationController
   end
 
   def destroy
-    @record = Record.find(params[:id])
+    @record = current_user.records.find(params[:id])
     @record.destroy
     head :no_content
   end
 
   def update
-    @record = Record.find(params[:id])
+    @record = current_user.records.find(params[:id])
     if @record.update(record_params)
       render json: @record
     else

@@ -9,3 +9,17 @@ This version uses ES6 instead of CoffeeScript. You can use ES6 with react-rails 
 ```
 rails generate react:component ComponentName --es6
 ```
+
+Windows 10 seems to have some issues with bcrypt:
+```
+irb
+irb(main):002:0> require 'bcrypt'
+LoadError: cannot load such file -- bcrypt_ext
+```
+
+The workaround seems to be to run
+```
+gem uninstall bcrypt
+
+gem install bcrypt --platform=ruby
+```
